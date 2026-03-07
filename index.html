@@ -1,109 +1,577 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>З 14 лютого ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>8 Березня — для тебе 💐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blush: #fce4ec;
+      --rose: #f8bbd9;
+      --rose-light: #fdf2f7;
+      --mint: #c8e6c9;
+      --mint-soft: #e8f5e9;
+      --sage: #a5d6a7;
+      --peach: #ffccbc;
+      --cream: #fff8f9;
+      --lavender: #e1bee7;
+      --text-soft: #5d4e57;
+      --text-dark: #3e3539;
+      --shadow: rgba(93, 78, 87, 0.15);
+      --glow: rgba(248, 187, 217, 0.4);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
 
-<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-        text-align: center;
-        color: white;
+      font-family: 'Nunito', sans-serif;
+      background:
+        radial-gradient(ellipse 140% 70% at 50% -10%, rgba(255, 248, 249, 0.95), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 85% 60%, rgba(232, 245, 233, 0.6), transparent),
+        radial-gradient(ellipse 70% 50% at 15% 80%, rgba(252, 228, 236, 0.6), transparent),
+        linear-gradient(165deg, var(--cream) 0%, var(--rose-light) 30%, var(--mint-soft) 70%, var(--blush) 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text-dark);
+      position: relative;
     }
 
-    h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        animation: fadeIn 2s ease forwards;
+    .petals-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
 
-    p {
-        font-size: 1.2rem;
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50% 0 50% 50%;
+      background: linear-gradient(135deg, var(--rose), var(--peach));
+      opacity: 0.25;
+      animation: float-petal 15s ease-in-out infinite;
+    }
+
+    .petal:nth-child(odd) {
+      background: linear-gradient(135deg, var(--mint), var(--sage));
+    }
+
+    @keyframes float-petal {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+      25% { transform: translate(10px, -20px) rotate(90deg); opacity: 0.3; }
+      50% { transform: translate(-5px, -40px) rotate(180deg); opacity: 0.25; }
+      75% { transform: translate(15px, -25px) rotate(270deg); opacity: 0.3; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      animation: fadeSlideIn 0.6s ease forwards;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
         opacity: 0;
-        animation: fadeIn 2s ease forwards;
-        animation-delay: 1.5s;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    button {
-        margin-top: 25px;
-        padding: 15px 35px;
-        font-size: 18px;
-        border: none;
-        border-radius: 30px;
-        background: white;
-        color: #ff4b6e;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        opacity: 0;
-        animation: fadeIn 2s ease forwards;
-        animation-delay: 3s;
+    .welcome-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 8vw, 2.75rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      line-height: 1.2;
     }
 
-    button:hover {
-        transform: scale(1.1);
+    .welcome-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      line-height: 1.5;
     }
 
-    .heart {
-        position: absolute;
-        color: white;
-        font-size: 20px;
-        animation: float 5s linear infinite;
+    .question-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      width: 100%;
+      box-shadow: 0 8px 32px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.6);
+      margin-bottom: 24px;
+    }
+
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .answers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-answer {
+      width: 100%;
+      padding: 16px 20px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      background: linear-gradient(135deg, var(--rose-light), var(--blush));
+      color: var(--text-dark);
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+
+    .btn-answer:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 24px var(--glow);
+    }
+
+    .btn-answer:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-answer.try-again {
+      animation: tryAgain 0.5s ease;
+    }
+
+    @keyframes tryAgain {
+      0%, 100% { transform: translateY(-2px) translateX(0) scale(1.02); }
+      15% { transform: translateY(-2px) translateX(-8px) scale(1.02); }
+      30% { transform: translateY(-2px) translateX(8px) scale(1.02); }
+      45% { transform: translateY(-2px) translateX(-5px) scale(1.02); }
+      60% { transform: translateY(-2px) translateX(5px) scale(1.02); }
+      75% { transform: translateY(-2px) translateX(-2px) scale(1.02); }
+    }
+
+    .btn-primary {
+      padding: 18px 36px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--rose), #f48fb1);
+      color: white;
+      box-shadow: 0 6px 24px var(--glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 16px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(244, 143, 177, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .reply-text {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-sm);
+      line-height: 1.5;
+      animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
-        to { opacity: 1; }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    @keyframes float {
-        from {
-            transform: translateY(100vh) scale(1);
-            opacity: 1;
-        }
-        to {
-            transform: translateY(-10vh) scale(1.5);
-            opacity: 0;
-        }
+    .quiz-feedback {
+      margin-top: 0;
+      padding: 12px 16px;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      background: rgba(255, 243, 224, 0.9);
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.35s ease, max-height 0.4s ease, margin 0.35s ease;
     }
-</style>
+
+    .quiz-feedback.is-visible {
+      opacity: 1;
+      max-height: 160px;
+      margin-top: 14px;
+    }
+
+    .gift-section {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .gift-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .gift-subtitle {
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    .gift-image-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 40px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      background: white;
+      padding: 16px;
+      margin: 0 auto 32px;
+      max-width: 100%;
+      animation: scaleIn 0.7s ease, giftGlow 3s ease-in-out 0.7s infinite;
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes giftGlow {
+      0%, 100% { box-shadow: 0 12px 40px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.8); }
+      50% { box-shadow: 0 16px 48px var(--glow), 0 0 0 1px rgba(255, 255, 255, 0.9); }
+    }
+
+    .gift-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--rose), var(--mint));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .gift-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .restaurant-section {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: 0 8px 32px var(--shadow);
+      text-align: center;
+      animation: fadeSlideIn 0.8s ease 0.2s both;
+    }
+
+    .restaurant-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .restaurant-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.85rem, 7vw, 2.5rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+      animation: nameReveal 0.8s ease 0.3s both;
+    }
+
+    @keyframes nameReveal {
+      from { opacity: 0; letter-spacing: 0.1em; }
+      to { opacity: 1; letter-spacing: 0.02em; }
+    }
+
+    .restaurant-desc {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0.4;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .dot.active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    @media (min-width: 480px) {
+      .container {
+        padding: 32px 24px 56px;
+      }
+      .question-card {
+        padding: 32px 28px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="petals-bg" aria-hidden="true">
+    <span class="petal" style="left: 5%; top: 10%; animation-delay: 0s;"></span>
+    <span class="petal" style="left: 25%; top: 30%; animation-delay: -3s;"></span>
+    <span class="petal" style="left: 60%; top: 15%; animation-delay: -6s;"></span>
+    <span class="petal" style="left: 80%; top: 40%; animation-delay: -2s;"></span>
+    <span class="petal" style="left: 15%; top: 60%; animation-delay: -4s;"></span>
+    <span class="petal" style="left: 70%; top: 70%; animation-delay: -5s;"></span>
+    <span class="petal" style="left: 40%; top: 85%; animation-delay: -1s;"></span>
+  </div>
 
-<div>
-    <h1>З 14 лютого ❤️</h1>
-    <p>Ти робиш мій світ теплішим кожного дня.</p>
-    <button onclick="showMessage()">Натисни мене</button>
-</div>
+  <main class="container">
+    <!-- Welcome -->
+    <section class="screen active" id="screen-welcome" data-screen="0">
+      <h1 class="welcome-title">8 Березня - тільки для тебе 💐</h1>
+      <p class="welcome-subtitle">Відповідай бистра</p>
+      <button type="button" class="btn-primary" id="btn-start">Почати</button>
+      <div class="progress-dots" id="dots-welcome">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-<script>
-function showMessage() {
-    alert("Я тебе дуже люблю 💖");
-}
+    <!-- Question 1: only "Так" is correct -->
+    <section class="screen" id="screen-q1" data-screen="1">
+      <div class="question-card">
+        <p class="question-text">Чому ти така гарна?</p>
+        <div class="answers">
+          <button type="button" class="btn-answer" data-next="q2" data-correct="true">Так</button>
+          <button type="button" class="btn-answer" data-next="q2">Ні</button>
+        </div>
+      </div>
+      <div class="progress-dots">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    document.body.appendChild(heart);
+    <!-- Question 2: only "Hugo Calderano XAC" correct; wrong answer shows playful message -->
+    <section class="screen" id="screen-q2" data-screen="2">
+      <div class="question-card">
+        <p class="question-text">Якою основою я граю в настільний теніс?</p>
+        <div class="answers">
+          <button type="button" class="btn-answer" data-next="q3">Butterfly Viscaria</button>
+          <button type="button" class="btn-answer" data-next="q3" data-correct="true">Hugo Calderano XAC</button>
+          <button type="button" class="btn-answer" data-next="q3">Butterfly Primorac</button>
+          <button type="button" class="btn-answer" data-next="q3">Joola Kenta</button>
+        </div>
+        <p class="quiz-feedback" id="q2-feedback" aria-live="polite">ВСМИСЛІ ТИ НЕ ЗНАЄШ ЗА ЦЕ, Я НЕ ПОНЯВ 😆</p>
+      </div>
+      <div class="progress-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
+    <!-- Question 3: only "Качкзьоби, юбочку, кофточку" is correct -->
+    <section class="screen" id="screen-q3" data-screen="3">
+      <div class="question-card">
+        <p class="question-text">Ти сьогодні вдягнеш?</p>
+        <div class="answers">
+          <button type="button" class="btn-answer" data-next="gift" data-correct="true">Качкзьоби, юбочку, кофточку</button>
+          <button type="button" class="btn-answer" data-next="gift">Спортівний костюм</button>
+          <button type="button" class="btn-answer" data-next="gift">Плавки</button>
+          <button type="button" class="btn-answer" data-next="gift">Велосипедки</button>
+        </div>
+      </div>
+      <div class="progress-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-setInterval(createHeart, 300);
-</script>
+    <!-- Gift certificate -->
+    <section class="screen" id="screen-gift" data-screen="4">
+      <p class="welcome-title" style="margin-bottom: 8px;">Дякую, що ти є 💕</p>
+      <p class="welcome-subtitle" style="margin-bottom: 20px;">Ти робиш моє життя світлішим. Ось тобі ОТПОЧИНОК.</p>
+      <div class="gift-section">
+        <h2 class="gift-title">Подарунок для тебе</h2>
+        <p class="gift-subtitle">Сертифікат на спа</p>
+        <div class="gift-image-wrap">
+          <img src="visit.jpg" alt="Сертифікат на відвідування спа" width="800" height="600" loading="lazy">
+        </div>
+        <div class="restaurant-section">
+          <p class="restaurant-label">Вечір разом</p>
+          <h2 class="restaurant-name">Шемомечама</h2>
+          <p class="restaurant-desc">Там ми проведемо цей вечір. Чекаю на тебе. 💐</p>
+        </div>
+      </div>
+      <div class="progress-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+      </div>
+    </section>
+  </main>
 
+  <script>
+    (function () {
+      const screens = document.querySelectorAll('.screen');
+      const btnStart = document.getElementById('btn-start');
+      const dotsContainers = document.querySelectorAll('.progress-dots');
+
+      function showScreen(screenId) {
+        screens.forEach(function (s) {
+          s.classList.remove('active');
+        });
+        var target = document.getElementById('screen-' + screenId);
+        if (target) {
+          target.classList.add('active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          updateDots(screenId);
+        }
+      }
+
+      function updateDots(screenId) {
+        var map = { welcome: 0, q1: 1, q2: 2, q3: 3, gift: 4 };
+        var idx = map[screenId];
+        if (idx === undefined) return;
+        dotsContainers.forEach(function (container) {
+          var dots = container.querySelectorAll('.dot');
+          dots.forEach(function (d, i) {
+            d.classList.toggle('active', i === idx);
+          });
+        });
+      }
+
+      btnStart.addEventListener('click', function () {
+        showScreen('q1');
+      });
+
+      var q2Feedback = document.getElementById('q2-feedback');
+
+      document.querySelectorAll('.btn-answer').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var next = this.getAttribute('data-next');
+          var isCorrect = this.getAttribute('data-correct') === 'true';
+          if (isCorrect) {
+            if (next) {
+              if (q2Feedback) q2Feedback.classList.remove('is-visible');
+              showScreen(next);
+            }
+          } else {
+            var el = this;
+            el.classList.remove('try-again');
+            el.offsetWidth;
+            el.classList.add('try-again');
+            el.addEventListener('animationend', function onEnd() {
+              el.classList.remove('try-again');
+              el.removeEventListener('animationend', onEnd);
+            }, { once: true });
+            if (q2Feedback && el.closest('#screen-q2')) {
+              q2Feedback.classList.add('is-visible');
+            }
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
